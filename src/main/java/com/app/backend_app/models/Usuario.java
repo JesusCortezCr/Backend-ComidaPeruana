@@ -74,12 +74,6 @@ public class Usuario {
     @Builder.Default
     private List<Pedido> pedidos = new ArrayList<>();
 
-    @PreUpdate
-    public void preUpdate() {
-        this.fechaActualizacion = LocalDateTime.now();
-    }
-    
-    // Enum para roles
     public enum Rol {
         CLIENTE, ADMINISTRADOR
     }

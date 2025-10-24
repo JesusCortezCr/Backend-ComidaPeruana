@@ -1,6 +1,6 @@
 package com.app.backend_app.models;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,29 +18,33 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "favoritos", uniqueConstraints = {
-    @UniqueConstraint(name = "uk_usuario_plato", columnNames = {"id_usuario", "id_plato"})
-})
+@Table(name = "detalle_pedido")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Favorito {
+public class DetallePedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_favorito")
-    private Long idFavorito;
+    @Column(name = "id_detalle")
+    private Long idDetalle;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "id_pedido", nullable = false)
+    private Pedido pedido;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_plato", nullable = false)
     private Plato plato;
 
-    @Column(name = "fecha_agregado", nullable = false, updatable = false)
-    private LocalDateTime fechaAgregado = LocalDateTime.now();
+    @Column(nullable = false)
+    private Integer cantidad;
+
+    @Column(name = "precio_unitario", nullable = false, precision = 10, scale = 2)
+    private BigDecimal precioUnitario;
+
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal subtotal;
 }
