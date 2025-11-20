@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -40,6 +41,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(Customizer.withDefaults())
                 // Deshabilitar CSRF (no necesario para APIs REST con JWT)
                 .csrf(AbstractHttpConfigurer::disable)
                 
@@ -56,8 +58,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/admin/**").hasRole("ADMINISTRADOR")
                         
                         // Rutas solo para CLIENTE
-                        .requestMatchers("/api/cliente/**").hasRole("CLIENTE")
-                        
+                        .requestMatchers("/api/cliente/**").hasRole("CLIENTE")                        
                         // Todas las demás rutas requieren autenticación
                         .anyRequest().authenticated()
                 )
