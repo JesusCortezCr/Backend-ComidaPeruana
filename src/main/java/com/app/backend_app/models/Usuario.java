@@ -63,9 +63,7 @@ public class Usuario implements UserDetails {
     @Column(name = "fecha_registro", nullable = false, updatable = false)
     private LocalDateTime fechaRegistro = LocalDateTime.now();
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Builder.Default
-    private List<Favorito> favoritos = new ArrayList<>();
+
 
 
 
