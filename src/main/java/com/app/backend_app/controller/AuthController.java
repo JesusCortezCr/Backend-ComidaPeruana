@@ -94,4 +94,7 @@ public class AuthController {
         return "Ya estas autenticado";
     }
 
+
+    //metodo para actualizar solo nombre y apellido
+
 }

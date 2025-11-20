@@ -65,19 +65,9 @@ public class Usuario implements UserDetails {
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
-    private List<DireccionEnvio> direcciones = new ArrayList<>();
-
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Builder.Default
     private List<Favorito> favoritos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Builder.Default
-    private List<Carrito> itemsCarrito = new ArrayList<>();
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @Builder.Default
-    private List<Pedido> pedidos = new ArrayList<>();
 
     public enum Rol {
         CLIENTE, ADMINISTRADOR

@@ -72,13 +72,6 @@ public class Plato {
     @Builder.Default
     private List<Favorito> favoritos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "plato", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Builder.Default
-    private List<Carrito> itemsCarrito = new ArrayList<>();
-
-    @OneToMany(mappedBy = "plato", cascade = CascadeType.ALL)
-    @Builder.Default
-    private List<DetallePedido> detallesPedidos = new ArrayList<>();
 
     @PreUpdate
     public void preUpdate() {

@@ -16,6 +16,8 @@ public class CorsConfig {
         config.addAllowedOrigin("http://localhost:5173"); 
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
+        config.addExposedHeader("Authorization");
+        config.setMaxAge(3600L);
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
