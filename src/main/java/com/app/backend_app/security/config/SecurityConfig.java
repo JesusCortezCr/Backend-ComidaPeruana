@@ -50,7 +50,11 @@ public class SecurityConfig {
                         // Rutas públicas (sin autenticación)
                         .requestMatchers(
                                 "/api/auth/**",           // Login y registro
-                                "/api/public/**",         // Endpoints públicos
+                                "/api/platos/**",
+                                "/api/platos/categorias",
+                                "/api/platos/especialidades",
+                                "/api/platos/destacados",
+                                "/uploads/**",         // Endpoints públicos
                                 "/error"                  // Página de error
                         ).permitAll()
                         
